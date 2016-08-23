@@ -6,8 +6,10 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -33,6 +35,39 @@ public class Book implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Rent rent;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Employee employee;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Shelf shelf;
+	
+	public Rent getRent() {
+		return rent;
+	}
+
+	public void setRent(Rent rent) {
+		this.rent = rent;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public Shelf getShelf() {
+		return shelf;
+	}
+
+	public void setShelf(Shelf shelf) {
+		this.shelf = shelf;
+	}
 
 	public Integer getId() {
 		return id;
