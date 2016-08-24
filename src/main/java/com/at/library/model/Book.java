@@ -13,10 +13,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.at.library.dto.DTO;
 import com.at.library.enums.StatusEnum;
 
 @Entity
-public class Book implements Serializable {
+public class Book extends DTO implements Serializable {
 
 	private static final long serialVersionUID = 6374272004167410735L;
 
