@@ -2,6 +2,7 @@ package com.at.library.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,8 +23,8 @@ public class Rent implements Serializable {
 	@GeneratedValue
 	private Integer id;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Timestamp createdAt;
+	@Temporal(TemporalType.DATE)
+	private Date createdAt;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private User user;
@@ -42,11 +43,11 @@ public class Rent implements Serializable {
 		this.id = id;
 	}
 
-	public Timestamp getCreatedAt() {
+	public Date getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Timestamp createdAt) {
+	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 
