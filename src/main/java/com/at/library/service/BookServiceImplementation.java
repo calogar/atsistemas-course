@@ -34,6 +34,30 @@ public class BookServiceImplementation implements BookService {
 	}
 
 	@Override
+	public BookDTO findById(Integer id) {
+		final Book b = bookDao.findOne(id);
+		return transform(b);
+	}
+	
+	@Override
+	public BookDTO create(BookDTO bookDTO) {
+		final Book book = transform(bookDTO);
+		//Using transform because we must return a BookDTO
+		return transform(bookDao.save(book));
+	}
+	
+	@Override
+	public void update(BookDTO bookDTO) {
+		final Book book = transform(bookDTO);
+		bookDao.save(book);
+	}
+	
+	@Override
+	public void delete(Integer id) {
+		bookDao.delete(id);
+	}
+	
+	@Override
 	public BookDTO transform(Book book) {
 		return dozer.map(book, BookDTO.class);
 	}
