@@ -118,4 +118,9 @@ public class Book extends DTO implements Serializable {
 		this.startDate = startDate;
 	}
 
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", isbn=" + isbn + ", title=" + title + ", author=" + author + ", status=" + status
+				+ ", startDate=" + startDate + ", rent=" + rent + ", employee=" + employee + ", shelf=" + shelf + "]";
+	}
 }
