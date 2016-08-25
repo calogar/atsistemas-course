@@ -10,12 +10,12 @@ spring:
 spring:
   profiles: local
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/library
-    username: root
-    password: 0000
+    url: "jdbc:mysql://localhost:3306/library"
+    username: "carlos"
+    password: "0000"
   jpa:
     show-sql: true
     format-sql: true
     hibernate:
       ddl-auto: update
-      dialect: org.hibernate.dialect.MySQL5Dialect
+      dialect: "org.hibernate.dialect.MySQL5Dialect"
