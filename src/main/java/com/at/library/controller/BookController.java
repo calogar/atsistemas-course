@@ -56,7 +56,7 @@ public class BookController {
 	@RequestMapping(value = "/{id}", method = { RequestMethod.GET })
 	public BookDTO findOne(@PathVariable("id") Integer id) {
 		log.debug(String.format("Getting book with id: %s", id));
-		return bookservice.findBy(id);
+		return bookservice.findById(id);
 	}
 	
 	@RequestMapping(value = "/{id}", method = { RequestMethod.DELETE})
