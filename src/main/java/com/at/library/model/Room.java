@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -21,7 +21,7 @@ public class Room implements Serializable {
 	@Id
 	private String location;
 	
-	@OneToMany
+	@OneToMany(fetch = FetchType.LAZY) // We cloud add cascade, but not recommended
 	private List<Shelf> shelves = new ArrayList<>();
 
 	public String getLocation() {
