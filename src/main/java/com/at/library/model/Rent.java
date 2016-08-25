@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,32 +21,30 @@ public class Rent implements Serializable {
 
 	private static final long serialVersionUID = 6374272004167410735L;
 	
+	/*
 	@Id
 	@GeneratedValue
 	private Integer id;
+	*/
 	
+	// Specifying double primary key
+	@Id
 	@Temporal(TemporalType.DATE)
 	private Date createdAt;
+	
+	// Specifying double primary key
+	@Id
+	@OneToOne
+	private Book books;
 	
 	@Temporal(TemporalType.DATE)
 	private Date endAt;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private User user;
-
-	@OneToMany
-	private List<Book> books = new ArrayList<>();
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Employee employee;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public Date getCreatedAt() {
 		return createdAt;
