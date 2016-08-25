@@ -3,10 +3,12 @@ package com.at.library.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Employee implements Serializable {
 
 private static final long serialVersionUID = 6374272004167410735L;

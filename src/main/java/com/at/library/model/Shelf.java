@@ -3,12 +3,14 @@ package com.at.library.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Shelf implements Serializable {
 
 	private static final long serialVersionUID = 6374272004167410735L;
