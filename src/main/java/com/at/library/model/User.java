@@ -26,6 +26,8 @@ public class User implements Serializable {
 	
 	private String name;
 	
+	// If we want to make it unique:
+	// @Column(unique = true)
 	private String dni;
 	
 	@Enumerated(EnumType.STRING)

@@ -26,8 +26,9 @@ public class Shelf implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Book> books = new ArrayList<>();
 	
-	@ManyToOne
-	private Room room;
+	// We can get this info by doing a query
+	// @ManyToOne
+	// private Room room;
 	
 	public Integer getNumber() {
 		return number;
@@ -45,6 +46,7 @@ public class Shelf implements Serializable {
 		this.books = books;
 	}
 
+	/*
 	public Room getRoom() {
 		return room;
 	}
@@ -52,6 +54,7 @@ public class Shelf implements Serializable {
 	public void setRoom(Room room) {
 		this.room = room;
 	}
+	*/
 
 	public String getCode() {
 		return code;
