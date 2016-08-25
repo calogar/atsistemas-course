@@ -1,6 +1,7 @@
 package com.at.library.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -25,13 +26,13 @@ public class User implements Serializable {
 	
 	private String name;
 	
-	private String surname;
+	private String dni;
 	
 	@Enumerated(EnumType.STRING)
 	private UserStatus userStatus;
 
 	@OneToMany
-	private List<Rent> rents;
+	private List<Rent> rents = new ArrayList<>();
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Employee employee;
@@ -52,12 +53,12 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getDni() {
+		return dni;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public UserStatus getUserStatus() {

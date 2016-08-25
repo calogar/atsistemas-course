@@ -1,6 +1,7 @@
 package com.at.library.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -23,7 +24,7 @@ public class Shelf implements Serializable {
 	private Integer number;
 	
 	@OneToMany(fetch = FetchType.LAZY)
-	private List<Book> books;
+	private List<Book> books = new ArrayList<>();
 	
 	@ManyToOne
 	private Room room;

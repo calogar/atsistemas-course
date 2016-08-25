@@ -2,6 +2,7 @@ package com.at.library.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class Rent implements Serializable {
 	private User user;
 
 	@OneToMany
-	private List<Book> books;
+	private List<Book> books = new ArrayList<>();
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Employee employee;

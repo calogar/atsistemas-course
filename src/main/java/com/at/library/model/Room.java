@@ -1,6 +1,7 @@
 package com.at.library.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -21,7 +22,7 @@ public class Room implements Serializable {
 	private String location;
 	
 	@OneToMany
-	private List<Shelf> shelves;
+	private List<Shelf> shelves = new ArrayList<>();
 
 	public String getLocation() {
 		return location;

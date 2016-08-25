@@ -1,6 +1,7 @@
 package com.at.library.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -22,13 +23,13 @@ private static final long serialVersionUID = 6374272004167410735L;
 	private String surname;
 	
 	@OneToMany
-	private List<User> users;
+	private List<User> users = new ArrayList<>();
 	
 	@OneToMany
-	private List<Rent> rents;
+	private List<Rent> rents = new ArrayList<>();
 	
 	@OneToMany
-	private List<Book> books;
+	private List<Book> books = new ArrayList<>();
 
 	public Integer getId() {
 		return id;
