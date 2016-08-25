@@ -40,6 +40,10 @@ public class Rent implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date endAt;
 	
+	// Date we must return the book
+	@Temporal(TemporalType.DATE)
+	private Date returnAt;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private User user;
 	
@@ -60,14 +64,6 @@ public class Rent implements Serializable {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public List<Book> getBooks() {
-		return books;
-	}
-
-	public void setBooks(List<Book> books) {
-		this.books = books;
 	}
 
 	public Employee getEmployee() {
