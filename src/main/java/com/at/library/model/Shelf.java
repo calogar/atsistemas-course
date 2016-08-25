@@ -13,9 +13,10 @@ public class Shelf implements Serializable {
 
 	private static final long serialVersionUID = 6374272004167410735L;
 
+	//@GeneratedValue
+
 	@Id
-	@GeneratedValue
-	private Integer id;
+	private String code;
 	
 	private Integer number;
 	
@@ -25,14 +26,6 @@ public class Shelf implements Serializable {
 	@ManyToOne
 	private Room room;
 	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public Integer getNumber() {
 		return number;
 	}
@@ -56,4 +49,14 @@ public class Shelf implements Serializable {
 	public void setRoom(Room room) {
 		this.room = room;
 	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	
 }

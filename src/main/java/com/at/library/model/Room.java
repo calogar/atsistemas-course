@@ -11,22 +11,15 @@ public class Room implements Serializable {
 	
 	private static final long serialVersionUID = 6374272004167410735L;
 
-	@Id
-	@GeneratedValue
-	private Integer id;
+	//@Id
+	//@GeneratedValue
+	//private Integer id;
 	
+	@Id
 	private String location;
 	
 	@OneToMany
 	private List<Shelf> shelves;
-	
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getLocation() {
 		return location;
@@ -43,4 +36,6 @@ public class Room implements Serializable {
 	public void setShelves(List<Shelf> shelves) {
 		this.shelves = shelves;
 	}
+	
+	
 }

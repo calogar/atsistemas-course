@@ -26,6 +26,9 @@ public class Rent implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date createdAt;
 	
+	@Temporal(TemporalType.DATE)
+	private Date endAt;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private User user;
 
@@ -73,6 +76,14 @@ public class Rent implements Serializable {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+
+	public Date getEndAt() {
+		return endAt;
+	}
+
+	public void setEndAt(Date endAt) {
+		this.endAt = endAt;
 	}
 
 }
