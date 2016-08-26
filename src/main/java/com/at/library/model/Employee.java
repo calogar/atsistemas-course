@@ -9,11 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.at.library.dto.DTO;
+
 @Entity
 public class Employee implements Serializable {
-
-private static final long serialVersionUID = 6374272004167410735L;
 	
+	private static final long serialVersionUID = -5503934369710257677L;
+
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -78,5 +80,4 @@ private static final long serialVersionUID = 6374272004167410735L;
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
-	
 }

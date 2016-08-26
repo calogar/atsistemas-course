@@ -20,9 +20,9 @@ import javax.persistence.Transient;
 
 @Entity
 public class Rent implements Serializable {
-
-	private static final long serialVersionUID = 6374272004167410735L;
 	
+	private static final long serialVersionUID = 4731219962512783574L;
+
 	@EmbeddedId
 	private RentPK rentPK;
 	
@@ -90,7 +90,4 @@ public class Rent implements Serializable {
 	public void setReturnAt(Date returnAt) {
 		this.returnAt = returnAt;
 	}
-	
-	
-
 }

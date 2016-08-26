@@ -14,9 +14,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Shelf implements Serializable {
 
-	private static final long serialVersionUID = 6374272004167410735L;
-
-	//@GeneratedValue
+	private static final long serialVersionUID = 7540076976125262757L;
 
 	@Id
 	private String code;

@@ -18,8 +18,8 @@ import com.at.library.enums.UserStatus;
 @Entity
 public class User implements Serializable {
 
-	private static final long serialVersionUID = 6374272004167410735L;
-	
+	private static final long serialVersionUID = -3501156936037769057L;
+
 	@Id
 	@GeneratedValue
 	private Integer Id;
