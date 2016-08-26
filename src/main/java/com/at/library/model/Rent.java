@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,27 +16,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 public class Rent implements Serializable {
 
 	private static final long serialVersionUID = 6374272004167410735L;
 	
-	/*
-	@Id
-	@GeneratedValue
-	private Integer id;
-	*/
-	
-	// Specifying double primary key
-	@Id
-	@Temporal(TemporalType.DATE)
-	private Date createdAt;
-	
-	// Specifying double primary key
-	@Id
-	@OneToOne
-	private Book books;
+	@EmbeddedId
+	private RentPK rentPK;
 	
 	@Temporal(TemporalType.DATE)
 	private Date endAt;
@@ -50,14 +39,26 @@ public class Rent implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Employee employee;
 
+	@Transient
 	public Date getCreatedAt() {
-		return createdAt;
+		return rentPK.getCreatedAt();
 	}
-
+	
+	@Transient
 	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+		rentPK.setCreatedAt(createdAt);
+	}
+	
+	@Transient
+	public Book getBook() {
+		return rentPK.getBook();
 	}
 
+	@Transient
+	public void setBook(Book book) {
+		rentPK.setBook(book);
+	}
+	
 	public User getUser() {
 		return user;
 	}
@@ -81,5 +82,15 @@ public class Rent implements Serializable {
 	public void setEndAt(Date endAt) {
 		this.endAt = endAt;
 	}
+
+	public Date getReturnAt() {
+		return returnAt;
+	}
+
+	public void setReturnAt(Date returnAt) {
+		this.returnAt = returnAt;
+	}
+	
+	
 
 }

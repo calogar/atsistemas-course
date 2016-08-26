@@ -38,7 +38,7 @@ public class Book extends DTO implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 
-	@OneToOne(fetch=FetchType.LAZY)
+	//@OneToOne(fetch=FetchType.LAZY)
 	private Rent rent;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
