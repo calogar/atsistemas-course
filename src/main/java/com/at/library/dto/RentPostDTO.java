@@ -8,6 +8,8 @@ public class RentPostDTO extends DTO implements Serializable {
 	// Here we only consider the data we want the user to input
 	// The end and initial date are calculated by ourselves
 	
+	private static final long serialVersionUID = 5000349539272833840L;
+
 	private Integer idBook; // Not a whole Book or BookDTO, only the id
 	
 	private Integer idUser;

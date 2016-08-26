@@ -6,11 +6,13 @@ import java.util.List;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.at.library.dao.BookDao;
 import com.at.library.dto.BookDTO;
 import com.at.library.model.Book;
 
+@Service
 public class BookServiceImplementation implements BookService {
 
 	@Autowired

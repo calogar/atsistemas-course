@@ -2,18 +2,21 @@ package com.at.library.dto;
 
 import java.io.Serializable;
 
-public class BookDTO implements Serializable {
+public class BookDTO extends DTO implements Serializable {
 
 	private static final long serialVersionUID = 1583585532736761521L;
 
+	private Integer id;
+	
 	private String isbn;
 
 	private String title;
 
 	private String author;
-
-	public BookDTO(String isbn, String title, String author) {
-		super();
+	
+	public BookDTO(Integer id, String isbn, String title, String author) {
+		//super();
+		this.setId(id);
 		this.isbn = isbn;
 		this.title = title;
 		this.author = author;
@@ -47,4 +50,17 @@ public class BookDTO implements Serializable {
 		this.author = author;
 	}
 
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "BookDTO [id=" + id + ", isbn=" + isbn + ", title=" + title + ", author=" + author + "]";
+	}
 }
