@@ -1,37 +1,31 @@
 package com.at.library.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 @Entity
 public class Rent implements Serializable {
 	
 	private static final long serialVersionUID = 4731219962512783574L;
 
-	@EmbeddedId
-	private RentPK rentPK;
-	
-	@Temporal(TemporalType.DATE)
-	private Date endAt;
-	
-	// Date we must return the book
-	@Temporal(TemporalType.DATE)
-	private Date returnAt;
+	//@EmbeddedId
+	//private RentPK rentPK;
+
+	@Id
+	@GeneratedValue
+	private Integer id;
+
+	@OneToOne
+	private Book book;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private User user;
@@ -39,6 +33,16 @@ public class Rent implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Employee employee;
 
+	@Temporal(TemporalType.DATE)
+	private Date createdAt;
+
+	@Temporal(TemporalType.DATE)
+	private Date endAt;
+	
+	@Temporal(TemporalType.DATE)
+	private Date returnAt;
+		
+	/*
 	@Transient
 	public Date getCreatedAt() {
 		return rentPK.getCreatedAt();
@@ -49,6 +53,7 @@ public class Rent implements Serializable {
 		rentPK.setCreatedAt(createdAt);
 	}
 	
+	
 	@Transient
 	public Book getBook() {
 		return rentPK.getBook();
@@ -58,7 +63,7 @@ public class Rent implements Serializable {
 	public void setBook(Book book) {
 		rentPK.setBook(book);
 	}
-	
+	*/
 	public User getUser() {
 		return user;
 	}
@@ -89,5 +94,29 @@ public class Rent implements Serializable {
 
 	public void setReturnAt(Date returnAt) {
 		this.returnAt = returnAt;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Book getBook() {
+		return book;
+	}
+
+	public void setBook(Book book) {
+		this.book = book;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 }
