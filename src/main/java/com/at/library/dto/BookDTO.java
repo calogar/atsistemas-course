@@ -23,7 +23,19 @@ public class BookDTO extends DTO implements Serializable {
 	}
 
 	public BookDTO() {
-		super();
+	}
+	
+	@Override
+	public String toString() {
+		return "BookDTO [id=" + id + ", isbn=" + isbn + ", title=" + title + ", author=" + author + "]";
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getIsbn() {
@@ -48,19 +60,5 @@ public class BookDTO extends DTO implements Serializable {
 
 	public void setAuthor(String author) {
 		this.author = author;
-	}
-
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	@Override
-	public String toString() {
-		return "BookDTO [id=" + id + ", isbn=" + isbn + ", title=" + title + ", author=" + author + "]";
 	}
 }

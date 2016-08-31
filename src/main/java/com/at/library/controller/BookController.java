@@ -24,7 +24,7 @@ public class BookController {
 	@Autowired
 	private BookService bookservice;
 	
-	// Allways thing in the depth of loggin when using it (debug, warnings...) 
+	// Always thing in the depth of loggin when using it (debug, warnings...) 
 	private static final Logger log = LoggerFactory.getLogger(BookController.class);
 	
 	@RequestMapping(method = { RequestMethod.GET })
