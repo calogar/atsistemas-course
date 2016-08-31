@@ -40,5 +40,10 @@ public class RentPostDTO extends DTO implements Serializable {
 		this.employee = employee;
 	}
 
+	@Override
+	public String toString() {
+		return "RentPostDTO [book=" + book + ", user=" + user + ", employee=" + employee + "]";
+	}
+
 	
 }

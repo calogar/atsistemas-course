@@ -15,7 +15,7 @@ public interface BookService {
 	List<BookDTO> findAll();
 
 	/**
-	 * Gets a book by its id
+	 * Gets a book by id
 	 * 
 	 * @param id
 	 * @return
@@ -25,40 +25,40 @@ public interface BookService {
 	/**
 	 * Creates a book
 	 * 
-	 * @param
-	 * @return
+	 * @param BookDTO with input data
+	 * @return Created BookDTO
 	 */
 	public BookDTO create(BookDTO book); 
 	
 	/**
 	 * Updates a book
 	 * 
-	 * @param
-	 * @return
+	 * @param BookDTO with input data
+	 * @return Updated BookDTO
 	 */
 	public void update(BookDTO bookDTO);
 	
 	/**
 	 * Deletes a book
 	 * 
-	 * @param BookDTO
-	 * @return
+	 * @param Id of the Book we wanto to delete
+	 * @return Deleted BookDTO
 	 */
 	public void delete(Integer id);
 	
 	/**
 	 * Transforms a Book into a BookDTO
 	 * 
-	 * @param book
-	 * @return
+	 * @param Book
+	 * @return BookDTO
 	 */
 	BookDTO transform(Book book);
 
 	/**
 	 * Transforms a BookDTO into a Book
 	 * 
-	 * @param book
-	 * @return
+	 * @param BookDTO
+	 * @return Book
 	 */
 	Book transform(BookDTO book);
 
