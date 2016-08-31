@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -25,11 +24,11 @@ public class Book extends DTO implements Serializable {
 	@Id
 	@GeneratedValue
 	private Integer id;
-
+	
 	private String isbn;
-
+	
 	private String title;
-
+	
 	private String author;
 
 	@Enumerated(EnumType.STRING)

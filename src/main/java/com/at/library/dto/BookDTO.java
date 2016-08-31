@@ -13,13 +13,19 @@ public class BookDTO extends DTO implements Serializable {
 	private String title;
 
 	private String author;
+
+	// New fields
+	private String description;
+	
+	private String image;
+	
+	private String publicationYear;
 	
 	public BookDTO(Integer id, String isbn, String title, String author) {
-		//super();
 		this.setId(id);
-		this.isbn = isbn;
-		this.title = title;
-		this.author = author;
+		this.setIsbn(isbn);
+		this.setTitle(title);
+		this.setAuthor(author);
 	}
 
 	public BookDTO() {
@@ -27,7 +33,8 @@ public class BookDTO extends DTO implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "BookDTO [id=" + id + ", isbn=" + isbn + ", title=" + title + ", author=" + author + "]";
+		return "BookDTO [id=" + id + ", isbn=" + isbn + ", title=" + title + ", author=" + author + ", description="
+				+ description + ", image=" + image + ", publicationYear=" + publicationYear + "]";
 	}
 
 	public Integer getId() {
@@ -61,4 +68,29 @@ public class BookDTO extends DTO implements Serializable {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getPublicationYear() {
+		return publicationYear;
+	}
+
+	public void setPublicationYear(String publicationYear) {
+		this.publicationYear = publicationYear;
+	}
+
 }
