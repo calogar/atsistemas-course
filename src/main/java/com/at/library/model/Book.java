@@ -14,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.at.library.dto.DTO;
-import com.at.library.enums.StatusEnum;
+import com.at.library.enums.BookStatusEnum;
 
 @Entity
 public class Book extends DTO implements Serializable {
@@ -32,7 +32,7 @@ public class Book extends DTO implements Serializable {
 	private String author;
 
 	@Enumerated(EnumType.STRING)
-	private StatusEnum status;
+	private BookStatusEnum status;
 
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
@@ -102,11 +102,11 @@ public class Book extends DTO implements Serializable {
 		this.author = author;
 	}
 
-	public StatusEnum getStatus() {
+	public BookStatusEnum getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusEnum status) {
+	public void setStatus(BookStatusEnum status) {
 		this.status = status;
 	}
 

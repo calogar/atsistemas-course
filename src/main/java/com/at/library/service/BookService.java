@@ -33,10 +33,10 @@ public interface BookService {
 	/**
 	 * Updates a book
 	 * 
-	 * @param BookDTO with input data
+	 * @param Id of the book and BookDTO with input data
 	 * @return Updated BookDTO
 	 */
-	public void update(BookDTO bookDTO);
+	public void update(Integer id, BookDTO bookDTO);
 	
 	/**
 	 * Deletes a book

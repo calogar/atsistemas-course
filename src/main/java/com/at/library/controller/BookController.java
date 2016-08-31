@@ -22,11 +22,10 @@ public class BookController {
 	@Autowired
 	private BookService bookservice;
 	
-	// Always thing in the depth of loggin when using it (debug, warnings...) 
 	private static final Logger log = LoggerFactory.getLogger(BookController.class);
 	
 	@RequestMapping(method = { RequestMethod.GET })
-	public List<BookDTO> getAll() {
+	public List<BookDTO> findAll() {
 		log.debug("Searching all books");
 		return bookservice.findAll();
 	}
@@ -34,16 +33,16 @@ public class BookController {
 	// Create must always return the created object so we can work with it
 	// The controller ALWAYS works with the DTO, so we have to put the ids on them
 	@RequestMapping(method = { RequestMethod.POST })
-	public BookDTO create(@RequestBody BookDTO book) { // RequestBody gets the JSON and converts it to BookDTO
-		log.debug(String.format("Creating this book: %s", book.toString()));
-		return bookservice.create(book);
+	public BookDTO create(@RequestBody BookDTO bookDTO) { // RequestBody gets the JSON and converts it to BookDTO
+		log.debug(String.format("Creating this book: %s", bookDTO.toString()));
+		return bookservice.create(bookDTO);
 	}
 
 	// PUT don't usually return the object (it may be the case)
-	@RequestMapping(value = "/{id}", method = { RequestMethod.PUT})
-	public void update(@PathVariable("id") Integer id, @RequestBody BookDTO book) {
-		log.debug(String.format("Updating this book: %s", book));
-		bookservice.update(book);
+	@RequestMapping(value = "/{id}", method = { RequestMethod.PUT })
+	public void update(@PathVariable("id") Integer id, @RequestBody BookDTO bookDTO) {
+		log.debug(String.format("Updating this book: %s", bookDTO));
+		bookservice.update(id, bookDTO);
 	}
 	
 	@RequestMapping(value = "/{id}", method = { RequestMethod.GET })
@@ -52,7 +51,7 @@ public class BookController {
 		return bookservice.findById(id);
 	}
 	
-	@RequestMapping(value = "/{id}", method = { RequestMethod.DELETE})
+	@RequestMapping(value = "/{id}", method = { RequestMethod.DELETE })
 	public void delete(@PathVariable("id") Integer id) {
 		log.debug(String.format("Deleting book with id: %s", id));
 		bookservice.delete(id);

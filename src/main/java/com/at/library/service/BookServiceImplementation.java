@@ -1,6 +1,7 @@
 package com.at.library.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.at.library.dao.BookDao;
 import com.at.library.dto.BookDTO;
+import com.at.library.enums.BookStatusEnum;
 import com.at.library.model.Book;
 
 @Service
@@ -44,19 +46,26 @@ public class BookServiceImplementation implements BookService {
 	@Override
 	public BookDTO create(BookDTO bookDTO) {
 		final Book book = transform(bookDTO);
-		//Using transform because we must return a BookDTO
+		book.setStartDate(new Date());
+		book.setStatus(BookStatusEnum.AVAILABLE);
+		// Using transform because we must return a BookDTO
 		return transform(bookDao.save(book));
 	}
 	
 	@Override
-	public void update(BookDTO bookDTO) {
+	public void update(Integer id, BookDTO bookDTO) {
+		// TODO: Check that the id corresponds to the bookDTO and throw exception if not
 		final Book book = transform(bookDTO);
 		bookDao.save(book);
 	}
 	
 	@Override
 	public void delete(Integer id) {
-		bookDao.delete(id);
+		// TODO: Check that the book exists and throw exception if not
+		Book book = bookDao.findOne(id);
+		// We set status to unavailable instead of deleting it
+		book.setStatus(BookStatusEnum.UNAVAILABLE);
+		bookDao.save(book);
 	}
 	
 	@Override
