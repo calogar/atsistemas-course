@@ -8,11 +8,11 @@ import com.at.library.model.Book;
 public interface BookService {
 
 	/**
-	 * Searches all the books in the system
+	 * Searches all the books in the system, searching by title, isbn or author
 	 * 
 	 * @return list of books
 	 */
-	List<BookDTO> findAll();
+	List<BookDTO> search(String title, String isbn, String author);
 
 	/**
 	 * Gets a book by id

@@ -22,19 +22,15 @@ public class BookServiceImplementation implements BookService {
 	
 	@Autowired
 	private DozerBeanMapper dozer;
-	
-	// Get all the books and transforms them to DTOs
-	@Override
-	public List<BookDTO> findAll() {
-		final Iterable<Book> findAll = bookDao.findAll();
-		final Iterator<Book> iterator = findAll.iterator();
-		final List<BookDTO> res = new ArrayList<>();
-		while (iterator.hasNext()) {
-			final Book b = iterator.next();
-			final BookDTO bDTO = transform(b);
-			res.add(bDTO);
+
+	@Override	
+	public List<BookDTO> search(String title, String isbn, String author) {
+		final List<Book> books = bookDao.search(title, isbn, author);
+		List<BookDTO> bookDTOs = new ArrayList();
+		for(Book book : books) {
+			bookDTOs.add(transform(book));
 		}
-		return res;
+		return bookDTOs;
 	}
 
 	@Override
