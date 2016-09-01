@@ -22,7 +22,7 @@ public class User implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Integer Id;
+	private Integer id;
 	
 	private String name;
 	
@@ -39,11 +39,11 @@ public class User implements Serializable {
 	private Employee employee;
 	
 	public Integer getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Integer id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getName() {
