@@ -2,7 +2,11 @@ package com.at.library.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
+
 import com.at.library.dto.BookDTO;
+import com.at.library.exceptions.BookNotFoundException;
+import com.at.library.exceptions.IdNotMatchingException;
 import com.at.library.model.Book;
 
 public interface BookService {
@@ -12,7 +16,7 @@ public interface BookService {
 	 * 
 	 * @return list of books
 	 */
-	List<BookDTO> search(String title, String isbn, String author);
+	List<BookDTO> search(String title, String isbn, String author, Pageable pageable);
 
 	/**
 	 * Gets a book by id
@@ -20,7 +24,7 @@ public interface BookService {
 	 * @param id
 	 * @return
 	 */
-	public BookDTO findById(Integer id);
+	public BookDTO findOne(Integer id) throws BookNotFoundException;
 	
 	/**
 	 * Creates a book
@@ -36,7 +40,7 @@ public interface BookService {
 	 * @param Id of the book and BookDTO with input data
 	 * @return Updated BookDTO
 	 */
-	public void update(Integer id, BookDTO bookDTO);
+	public void update(Integer id, BookDTO bookDTO) throws IdNotMatchingException;
 	
 	/**
 	 * Deletes a book
@@ -44,7 +48,7 @@ public interface BookService {
 	 * @param Id of the Book we wanto to delete
 	 * @return Deleted BookDTO
 	 */
-	public void delete(Integer id);
+	public void delete(Integer id) throws BookNotFoundException;
 	
 	/**
 	 * Transforms a Book into a BookDTO

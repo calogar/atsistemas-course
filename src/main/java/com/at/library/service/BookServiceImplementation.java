@@ -6,13 +6,15 @@ import java.util.List;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.at.library.dao.BookDao;
 import com.at.library.dto.BookDTO;
-import com.at.library.enums.BookStatusEnum;
+import com.at.library.enums.BookStatus;
+import com.at.library.exceptions.BookNotFoundException;
+import com.at.library.exceptions.IdNotMatchingException;
 import com.at.library.model.Book;
-import com.at.library.model.User;
 
 @Service
 public class BookServiceImplementation implements BookService {
@@ -24,8 +26,8 @@ public class BookServiceImplementation implements BookService {
 	private DozerBeanMapper dozer;
 
 	@Override	
-	public List<BookDTO> search(String title, String isbn, String author) {
-		final List<Book> books = bookDao.search(title, isbn, author);
+	public List<BookDTO> search(String title, String isbn, String author, Pageable pageable) {
+		final List<Book> books = bookDao.search(title, isbn, author, pageable);
 		List<BookDTO> bookDTOs = new ArrayList();
 		for(Book book : books) {
 			bookDTOs.add(transform(book));
@@ -34,10 +36,10 @@ public class BookServiceImplementation implements BookService {
 	}
 
 	@Override
-	public BookDTO findById(Integer id) {
+	public BookDTO findOne(Integer id) throws BookNotFoundException {
 		final Book book = bookDao.findOne(id);
 		if(book == null)
-			// TODO: throw an exception
+			throw new BookNotFoundException();
 		return transform(book);
 	}
 	
@@ -45,24 +47,27 @@ public class BookServiceImplementation implements BookService {
 	public BookDTO create(BookDTO bookDTO) {
 		Book book = transform(bookDTO);
 		book.setStartDate(new Date());
-		book.setStatus(BookStatusEnum.AVAILABLE);
-		// Using transform because we must return a BookDTO
+		book.setStatus(BookStatus.OK);
 		return transform(bookDao.save(book));
 	}
 	
 	@Override
-	public void update(Integer id, BookDTO bookDTO) {
-		// TODO: Check that the id corresponds to the bookDTO and throw exception if not
-		final Book book = transform(bookDTO);
+	public void update(Integer id, BookDTO bookDTO) throws IdNotMatchingException {
+		if (id != bookDTO.getId())
+			throw new IdNotMatchingException();
+		Book book = transform(bookDTO);
+		// Set status to OK again to avoid override
+		book.setStatus(BookStatus.OK);
 		bookDao.save(book);
 	}
 	
 	@Override
-	public void delete(Integer id) {
-		// TODO: Check that the book exists and throw exception if not
+	public void delete(Integer id) throws BookNotFoundException {
 		Book book = bookDao.findOne(id);
-		// We set status to unavailable instead of deleting it
-		book.setStatus(BookStatusEnum.UNAVAILABLE);
+		if (book == null)
+			throw new BookNotFoundException();
+		// We set status to deleted instead of deleting it
+		book.setStatus(BookStatus.DELETED);
 		bookDao.save(book);
 	}
 	
