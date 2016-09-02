@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.at.library.dto.BookDTO;
 import com.at.library.dto.UserDTO;
+import com.at.library.service.UserService;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -37,6 +39,18 @@ public class UserController {
 	@RequestMapping(method = { RequestMethod.GET })
 	public List<UserDTO> search(@RequestParam(value = "name", required = false) String name,
 								@RequestParam(value = "dni", required = false) String dni) {
+		log.debug("Searching Users by:");
+		if(name != null)
+			log.debug(String.format(" name:", name));
+		if(dni != null)
+			log.debug(String.format(" dni:", dni));
+		
 		return userService.search(name, dni);
+	}
+	
+	@RequestMapping(value = "/{id}", method = { RequestMethod.GET })
+	public UserDTO findOne(@PathVariable("id") Integer id) {
+		log.debug(String.format("Getting this user: %s", id));
+		return userService.findOne(id);
 	}
 }

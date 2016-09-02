@@ -12,8 +12,6 @@ public class UserDTO extends DTO implements Serializable {
 	
 	private String dni;
 	
-	private String status; // Convert from enum to String
-	
 	public UserDTO() {
 		
 	}
@@ -47,16 +45,8 @@ public class UserDTO extends DTO implements Serializable {
 		this.dni = dni;
 	}
 
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
 	@Override
 	public String toString() {
-		return "UserDTO [id=" + id + ", name=" + name + ", dni=" + dni + ", status=" + status + "]";
-	}	
+		return "UserDTO [id=" + id + ", name=" + name + ", dni=" + dni + "]";
+	}
 }
