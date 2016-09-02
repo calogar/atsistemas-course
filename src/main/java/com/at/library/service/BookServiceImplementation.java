@@ -81,4 +81,14 @@ public class BookServiceImplementation implements BookService {
 		return dozer.map(book, Book.class);
 	}
 
+	@Override
+	public boolean isAvailable(Integer id) throws BookNotFoundException {
+		Book book = bookDao.findOne(id);		
+		if(book == null)
+			throw new BookNotFoundException();
+		if(book.getStatus() != null && book.getStatus().equals(BookStatus.OK))
+			return true;
+		return false;
+	}
+
 }

@@ -66,4 +66,11 @@ public interface BookService {
 	 */
 	Book transform(BookDTO book);
 
+	/**
+	 * Checks if a Book is available for renting
+	 * @param The if of the Book
+	 * @return Boolean
+	 */
+	
+	public boolean isAvailable(Integer id) throws BookNotFoundException;
 }
