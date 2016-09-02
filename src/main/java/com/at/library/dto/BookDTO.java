@@ -2,6 +2,8 @@ package com.at.library.dto;
 
 import java.io.Serializable;
 
+import com.at.library.enums.BookStatus;
+
 public class BookDTO extends DTO implements Serializable {
 
 	private static final long serialVersionUID = 1583585532736761521L;
@@ -14,27 +16,24 @@ public class BookDTO extends DTO implements Serializable {
 
 	private String author;
 
+	private BookStatus status;
+	
 	// New fields
 	private String description;
 	
 	private String image;
 	
-	private String publicationYear;
+	private String year;
 	
-	public BookDTO(Integer id, String isbn, String title, String author) {
+	public BookDTO(Integer id, String isbn, String title, String author, BookStatus status) {
 		this.setId(id);
 		this.setIsbn(isbn);
 		this.setTitle(title);
 		this.setAuthor(author);
+		this.setStatus(status);
 	}
 
 	public BookDTO() {
-	}
-	
-	@Override
-	public String toString() {
-		return "BookDTO [id=" + id + ", isbn=" + isbn + ", title=" + title + ", author=" + author + ", description="
-				+ description + ", image=" + image + ", publicationYear=" + publicationYear + "]";
 	}
 
 	public Integer getId() {
@@ -85,12 +84,26 @@ public class BookDTO extends DTO implements Serializable {
 		this.image = image;
 	}
 
-	public String getPublicationYear() {
-		return publicationYear;
+	public String getYear() {
+		return year;
 	}
 
-	public void setPublicationYear(String publicationYear) {
-		this.publicationYear = publicationYear;
+	public void setYear(String year) {
+		this.year = year;
+	}
+
+	public BookStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(BookStatus status) {
+		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "BookDTO [id=" + id + ", isbn=" + isbn + ", title=" + title + ", author=" + author + ", description="
+				+ description + ", image=" + image + ", year=" + year + "]";
 	}
 
 }
