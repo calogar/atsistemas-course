@@ -2,7 +2,6 @@ package com.at.library.service;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.dozer.DozerBeanMapper;
@@ -13,6 +12,7 @@ import com.at.library.dao.BookDao;
 import com.at.library.dto.BookDTO;
 import com.at.library.enums.BookStatusEnum;
 import com.at.library.model.Book;
+import com.at.library.model.User;
 
 @Service
 public class BookServiceImplementation implements BookService {
@@ -35,13 +35,15 @@ public class BookServiceImplementation implements BookService {
 
 	@Override
 	public BookDTO findById(Integer id) {
-		final Book b = bookDao.findOne(id);
-		return transform(b);
+		final Book book = bookDao.findOne(id);
+		if(book == null)
+			// TODO: throw an exception
+		return transform(book);
 	}
 	
 	@Override
 	public BookDTO create(BookDTO bookDTO) {
-		final Book book = transform(bookDTO);
+		Book book = transform(bookDTO);
 		book.setStartDate(new Date());
 		book.setStatus(BookStatusEnum.AVAILABLE);
 		// Using transform because we must return a BookDTO
