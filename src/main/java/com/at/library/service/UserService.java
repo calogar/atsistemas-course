@@ -61,5 +61,4 @@ public interface UserService {
 	 * @return User
 	 */
 	public User transform(UserDTO userDTO);
-
 }
