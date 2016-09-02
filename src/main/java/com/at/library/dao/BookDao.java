@@ -20,12 +20,12 @@ public interface BookDao extends CrudRepository<Book, Integer> {
 	public List<BookDTO> findUnavailable();
 	*/
 	
-	@Query(value = "select b from Book as b where status <> 'RENTED' and status <> 'DELETED' " +
+	@Query(value = "select b from Book as b where status <> 'DELETED' " +
 				   "and (b.title  like %?1% or ?1 is null) " +
 				   "and (b.isbn   like %?2% or ?2 is null) " + 
 				   "and (b.author like %?3% or ?3 is null)")
 	public List<Book> search(String title, String isbn, String author, Pageable pageable);
 
-	@Query(value = "select b from Book as b where b.id = ?1 and status <> 'RENTED' and status <> 'DELETED'")
+	@Query(value = "select b from Book as b where b.id = ?1 and status <> 'DELETED'")
 	public Book findOne(Integer id);
 }

@@ -56,7 +56,7 @@ public class BookServiceImplementation implements BookService {
 		if (id != bookDTO.getId())
 			throw new IdNotMatchingException();
 		Book book = transform(bookDTO);
-		// Set status to OK again to avoid override
+		// Set status to OK again to avoid override when assigning from DTO
 		book.setStatus(BookStatus.OK);
 		bookDao.save(book);
 	}
