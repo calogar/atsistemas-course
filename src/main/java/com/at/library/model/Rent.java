@@ -17,9 +17,6 @@ public class Rent implements Serializable {
 	
 	private static final long serialVersionUID = 4731219962512783574L;
 
-	//@EmbeddedId
-	//private RentPK rentPK;
-
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -42,28 +39,6 @@ public class Rent implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date returnAt;
 		
-	/*
-	@Transient
-	public Date getCreatedAt() {
-		return rentPK.getCreatedAt();
-	}
-	
-	@Transient
-	public void setCreatedAt(Date createdAt) {
-		rentPK.setCreatedAt(createdAt);
-	}
-	
-	
-	@Transient
-	public Book getBook() {
-		return rentPK.getBook();
-	}
-
-	@Transient
-	public void setBook(Book book) {
-		rentPK.setBook(book);
-	}
-	*/
 	public User getUser() {
 		return user;
 	}
