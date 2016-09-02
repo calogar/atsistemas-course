@@ -91,4 +91,10 @@ public class BookServiceImplementation implements BookService {
 		return false;
 	}
 
+	@Override
+	public void changeStatus(Book book, BookStatus bookStatus) {
+		book.setStatus(bookStatus);
+		bookDao.save(book);
+	}
+
 }
