@@ -9,8 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.at.library.dto.DTO;
-
 @Entity
 public class Employee implements Serializable {
 	
@@ -22,7 +20,7 @@ public class Employee implements Serializable {
 	
 	private String name;
 	
-	private String surname;
+	private String dni;
 	
 	@OneToMany
 	private List<User> users = new ArrayList<>();
@@ -49,12 +47,12 @@ public class Employee implements Serializable {
 		this.name = name;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getDni() {
+		return dni;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public List<User> getUsers() {
