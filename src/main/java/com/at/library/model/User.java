@@ -2,16 +2,19 @@ package com.at.library.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.GeneratedValue;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.at.library.enums.UserStatus;
 
@@ -31,6 +34,12 @@ public class User implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	private UserStatus userStatus;
+
+	@Temporal(TemporalType.DATE)
+	private Date punishDate;
+	
+	@Temporal(TemporalType.DATE)
+	private Date forgiveDate;
 
 	@OneToMany
 	private List<Rent> rents = new ArrayList<>();
@@ -86,4 +95,19 @@ public class User implements Serializable {
 		this.employee = employee;
 	}
 
+	public Date getPunishDate() {
+		return punishDate;
+	}
+
+	public void setPunishDate(Date punishDate) {
+		this.punishDate = punishDate;
+	}
+
+	public Date getForgiveDate() {
+		return forgiveDate;
+	}
+
+	public void setForgiveDate(Date forgiveDate) {
+		this.forgiveDate = forgiveDate;
+	}
 }
