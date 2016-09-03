@@ -15,26 +15,27 @@ public class RentDTO extends DTO implements Serializable {
 
 	private Date returnAt;
 	
-	private BookDTO bookDTO;
+	private BookDTO book;
 
-	private UserDTO userDTO;
+	private UserDTO user;
 
-	private EmployeeDTO employeeDTO;
+	private EmployeeDTO employee;
 
 	public RentDTO() {
-		
+		super();
 	}
 	
-	public RentDTO(Integer id, Date createdAt, Date endAt, Date returnAt, BookDTO bookDTO, UserDTO userDTO, EmployeeDTO employeeDTO) {
-		this.setId(id);
-		this.setCreatedAt(createdAt);
-		this.setEndAt(endAt);
-		this.setReturnAt(returnAt);
-		this.setBookDTO(bookDTO);
-		this.setUserDTO(userDTO);
-		this.setEmployeeDTO(employeeDTO);
+	public RentDTO(Integer id, Date createdAt, Date endAt, Date returnAt, BookDTO book, UserDTO user, EmployeeDTO employee) {
+		super();
+		this.id = id;
+		this.createdAt = createdAt;
+		this.endAt = endAt;
+		this.returnAt = returnAt;
+		this.book = book;
+		this.user = user;
+		this.employee = employee;
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -67,33 +68,35 @@ public class RentDTO extends DTO implements Serializable {
 		this.returnAt = returnAt;
 	}
 
-	public BookDTO getBookDTO() {
-		return bookDTO;
+	public BookDTO getBook() {
+		return book;
 	}
 
-	public void setBookDTO(BookDTO bookDTO) {
-		this.bookDTO = bookDTO;
+	public void setBook(BookDTO book) {
+		this.book = book;
 	}
 
-	public UserDTO getUserDTO() {
-		return userDTO;
+	public UserDTO getUser() {
+		return user;
 	}
 
-	public void setUserDTO(UserDTO userDTO) {
-		this.userDTO = userDTO;
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
 
-	public EmployeeDTO getEmployeeDTO() {
-		return employeeDTO;
+	public EmployeeDTO getEmployee() {
+		return employee;
 	}
 
-	public void setEmployeeDTO(EmployeeDTO employeeDTO) {
-		this.employeeDTO = employeeDTO;
+	public void setEmployee(EmployeeDTO employee) {
+		this.employee = employee;
 	}
 
 	@Override
 	public String toString() {
 		return "RentDTO [id=" + id + ", createdAt=" + createdAt + ", endAt=" + endAt + ", returnAt=" + returnAt
-				+ ", bookDTO=" + bookDTO + ", userDTO=" + userDTO + ", employeeDTO=" + employeeDTO + "]";
+				+ ", book=" + book + ", user=" + user + ", employee=" + employee + "]";
 	}
+	
+	
 }
