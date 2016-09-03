@@ -26,7 +26,7 @@ public class UserServiceImplementation implements UserService {
 	@Override
 	public UserDTO create(UserDTO userDTO) {
 		User user = transform(userDTO);
-		user.setUserStatus(UserStatus.ACTIVE);
+		user.setUserStatus(UserStatus.NORMAL);
 		return transform(userDao.save(user));
 	}
 
@@ -35,7 +35,7 @@ public class UserServiceImplementation implements UserService {
 		User user = userDao.findOne(id);
 		if(user == null)
 			throw new UserNotFoundException();
-		user.setUserStatus(UserStatus.SUSPENDED);
+		user.setUserStatus(UserStatus.DELETED);
 		userDao.save(user);
 	}
 
@@ -63,6 +63,12 @@ public class UserServiceImplementation implements UserService {
 	
 	public UserDTO transform(User user) {
 		return dozer.map(user, UserDTO.class);
+	}
+
+	@Override
+	public Boolean isPunished(User user) {
+		System.out.println(user);
+		return user.getUserStatus().equals(UserStatus.BANNED);
 	}
 	
 }

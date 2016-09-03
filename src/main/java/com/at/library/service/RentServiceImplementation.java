@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 import com.at.library.dao.RentDao;
 import com.at.library.dto.BookDTO;
 import com.at.library.dto.EmployeeDTO;
-import com.at.library.dto.RentDTO;
 import com.at.library.dto.HistoryRentedDTO;
+import com.at.library.dto.RentDTO;
 import com.at.library.dto.RentPostDTO;
 import com.at.library.dto.UserDTO;
 import com.at.library.enums.BookStatus;
@@ -22,6 +22,7 @@ import com.at.library.exceptions.BookNotAvailableException;
 import com.at.library.exceptions.BookNotFoundException;
 import com.at.library.exceptions.EmployeeNotFoundException;
 import com.at.library.exceptions.IdNotMatchingException;
+import com.at.library.exceptions.PunishedUserException;
 import com.at.library.exceptions.RentNotFoundException;
 import com.at.library.exceptions.UserNotFoundException;
 import com.at.library.model.Book;
@@ -62,20 +63,25 @@ public class RentServiceImplementation implements RentService {
 																		  BookNotFoundException,
 																		  BookNotAvailableException,
 																		  UserNotFoundException,
-																		  EmployeeNotFoundException {
+																		  EmployeeNotFoundException,
+																		  PunishedUserException {
 		if(idBook != rentPostDTO.getBook()) // getBook returns an id
 			throw new IdNotMatchingException();
 		
 		if(!bookService.isAvailable(idBook))
 			throw new BookNotAvailableException();
 		
-		// TODO: Check user is not banned
+		final UserDTO userDTO = userService.findOne(rentPostDTO.getUser()); //getUser returns an id
+		System.out.println(userDTO);
+		final User user = userService.transform(userDTO);
+		System.out.println(user);
+		
+		if(userService.isPunished(user))
+			throw new PunishedUserException();
 		
 		Book book = bookService.transform(bookService.findOne(idBook));
 		final EmployeeDTO employeeDTO = employeeService.findOne(rentPostDTO.getEmployee()); //getEmployee returns an id
 		final Employee employee = employeeService.transform(employeeDTO);
-		final UserDTO userDTO = userService.findOne(rentPostDTO.getUser()); //getUser returns an id
-		final User user = userService.transform(userDTO);
 		
 		bookService.changeStatus(book, BookStatus.RENTED);
 		
