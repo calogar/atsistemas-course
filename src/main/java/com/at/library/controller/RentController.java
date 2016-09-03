@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.at.library.dto.HistoryRentedDTO;
 import com.at.library.dto.RentDTO;
-import com.at.library.dto.RentHistoryDTO;
 import com.at.library.dto.RentPostDTO;
 import com.at.library.exceptions.BookNotAvailableException;
 import com.at.library.exceptions.BookNotFoundException;
@@ -58,7 +58,7 @@ public class RentController {
 	}
 
 	@RequestMapping(value = "book/{id}/rent", method = { RequestMethod.GET })
-	public List<RentHistoryDTO> getBookHistory(@PathVariable("id") Integer idBook,
+	public List<HistoryRentedDTO> getBookHistory(@PathVariable("id") Integer idBook,
 									    @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
 									    @RequestParam(value = "size", required = false, defaultValue = "10") Integer size) throws BookNotFoundException {
 		log.debug(String.format("History of the book: %s", idBook));
@@ -66,7 +66,7 @@ public class RentController {
 	}
 
 	@RequestMapping(value = "user/id/rent", method = { RequestMethod.GET })
-	public List<RentHistoryDTO> getUserHistory(@PathVariable Integer idUser,
+	public List<HistoryRentedDTO> getUserHistory(@PathVariable Integer idUser,
 										@RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
 										@RequestParam(value = "size", required = false, defaultValue = "10") Integer size) {
 		log.debug(String.format("History of the user: %s", idUser));

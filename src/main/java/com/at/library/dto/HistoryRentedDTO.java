@@ -3,7 +3,7 @@ package com.at.library.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class RentHistoryDTO extends DTO implements Serializable {
+public class HistoryRentedDTO extends DTO implements Serializable {
 
 	private static final long serialVersionUID = 7103253036653136415L;
 	
@@ -17,7 +17,7 @@ public class RentHistoryDTO extends DTO implements Serializable {
 	
 	private Integer book;
 	
-	public RentHistoryDTO(Date init, Date end, String title, String isbn, Integer book) {
+	public HistoryRentedDTO(Date init, Date end, String title, String isbn, Integer book) {
 		super();
 		this.init = init;
 		this.end = end;

@@ -14,7 +14,7 @@ import com.at.library.dao.RentDao;
 import com.at.library.dto.BookDTO;
 import com.at.library.dto.EmployeeDTO;
 import com.at.library.dto.RentDTO;
-import com.at.library.dto.RentHistoryDTO;
+import com.at.library.dto.HistoryRentedDTO;
 import com.at.library.dto.RentPostDTO;
 import com.at.library.dto.UserDTO;
 import com.at.library.enums.BookStatus;
@@ -104,9 +104,9 @@ public class RentServiceImplementation implements RentService {
 	}
 
 	@Override
-	public List<RentHistoryDTO> getBookHistory(Integer idBook, Pageable pageable) {
+	public List<HistoryRentedDTO> getBookHistory(Integer idBook, Pageable pageable) {
 		List<Rent> rents = rentDao.findBookHistory(idBook, pageable);
-		List<RentHistoryDTO> rentHistoryDTOs = new ArrayList();
+		List<HistoryRentedDTO> rentHistoryDTOs = new ArrayList();
 		for(Rent rent : rents) {
 			rentHistoryDTOs.add(transformHistoryDTO(rent));
 		}
@@ -114,9 +114,9 @@ public class RentServiceImplementation implements RentService {
 	}
 
 	@Override
-	public List<RentHistoryDTO> getUserHistory(Integer idUser, Pageable pageable) {
+	public List<HistoryRentedDTO> getUserHistory(Integer idUser, Pageable pageable) {
 		List<Rent> rents = rentDao.findUserHistory(idUser, pageable);
-		List<RentHistoryDTO> rentHistoryDTOs = new ArrayList();
+		List<HistoryRentedDTO> rentHistoryDTOs = new ArrayList();
 		for(Rent rent : rents) {
 			rentHistoryDTOs.add(transformHistoryDTO(rent));
 		}
@@ -134,8 +134,8 @@ public class RentServiceImplementation implements RentService {
 	}
 
 	@Override
-	public RentHistoryDTO transformHistoryDTO(Rent rent) {
-		return new RentHistoryDTO(rent.getCreatedAt(),
+	public HistoryRentedDTO transformHistoryDTO(Rent rent) {
+		return new HistoryRentedDTO(rent.getCreatedAt(),
 								  rent.getEndAt(),
 								  rent.getBook().getTitle(),
 								  rent.getBook().getIsbn(),
