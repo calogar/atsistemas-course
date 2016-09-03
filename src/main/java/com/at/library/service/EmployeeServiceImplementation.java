@@ -2,12 +2,14 @@ package com.at.library.service;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.at.library.dao.EmployeeDao;
 import com.at.library.dto.EmployeeDTO;
 import com.at.library.exceptions.EmployeeNotFoundException;
 import com.at.library.model.Employee;
 
+@Service
 public class EmployeeServiceImplementation implements EmployeeService {
 
 	@Autowired
