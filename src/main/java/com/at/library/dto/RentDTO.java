@@ -21,6 +21,10 @@ public class RentDTO extends DTO implements Serializable {
 
 	private EmployeeDTO employeeDTO;
 
+	public RentDTO() {
+		
+	}
+	
 	public RentDTO(Integer id, Date createdAt, Date endAt, Date returnAt, BookDTO bookDTO, UserDTO userDTO, EmployeeDTO employeeDTO) {
 		this.setId(id);
 		this.setCreatedAt(createdAt);
