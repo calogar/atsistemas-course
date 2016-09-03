@@ -13,8 +13,7 @@ public interface UserService {
 	/**
 	 * Creates a User and sets it's status to ACTIVE
 	 * 
-	 * @param UserDTO
-	 *            with input params
+	 * @param UserDTO with input params
 	 * @return Created UserDTO
 	 */
 	public UserDTO create(UserDTO userDTO);
@@ -22,8 +21,7 @@ public interface UserService {
 	/**
 	 * Sets the User status to SUSPENDED
 	 * 
-	 * @param The
-	 *            id of the User
+	 * @param The id of the User
 	 * @return
 	 */
 	public void delete(Integer id) throws UserNotFoundException;
@@ -31,10 +29,8 @@ public interface UserService {
 	/**
 	 * Searchs Users by name, by dni or both
 	 * 
-	 * @param Name
-	 *            of the User
-	 * @param Dni
-	 *            of the User
+	 * @param Name of the User
+	 * @param Dni of the User
 	 */
 	public List<UserDTO> search(String name, String dni, Pageable pageable);
 
@@ -42,7 +38,7 @@ public interface UserService {
 	 * Get an User by it's id
 	 * 
 	 * @param Id of the user
-	 * @return The UserDTO
+	 * @return UserDTO
 	 */
 	public UserDTO findOne(Integer id) throws UserNotFoundException;
 
@@ -61,4 +57,13 @@ public interface UserService {
 	 * @return User
 	 */
 	public User transform(UserDTO userDTO);
+
+	/**
+	 * Checks if a given user is currently punished
+	 *
+	 * @param
+	 * @return Boolean
+	 */
+	public Boolean isPunished(User user);
+
 }

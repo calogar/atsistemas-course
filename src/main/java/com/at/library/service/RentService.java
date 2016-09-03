@@ -5,13 +5,14 @@ import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 
-import com.at.library.dto.RentDTO;
 import com.at.library.dto.HistoryRentedDTO;
+import com.at.library.dto.RentDTO;
 import com.at.library.dto.RentPostDTO;
 import com.at.library.exceptions.BookNotAvailableException;
 import com.at.library.exceptions.BookNotFoundException;
 import com.at.library.exceptions.EmployeeNotFoundException;
 import com.at.library.exceptions.IdNotMatchingException;
+import com.at.library.exceptions.PunishedUserException;
 import com.at.library.exceptions.RentNotFoundException;
 import com.at.library.exceptions.UserNotFoundException;
 import com.at.library.model.Rent;
@@ -35,7 +36,8 @@ public interface RentService {
 	  																  BookNotFoundException,
 	  																  BookNotAvailableException,
 	  																  UserNotFoundException,
-	  																  EmployeeNotFoundException;
+	  																  EmployeeNotFoundException,
+	  																  PunishedUserException;
 	/**
 	 * Deletes a Rent (returns a Book)
 	 * @param The id of the Book
