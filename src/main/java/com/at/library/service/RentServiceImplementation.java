@@ -71,10 +71,7 @@ public class RentServiceImplementation implements RentService {
 		if(!bookService.isAvailable(idBook))
 			throw new BookNotAvailableException();
 		
-		final UserDTO userDTO = userService.findOne(rentPostDTO.getUser()); //getUser returns an id
-		System.out.println(userDTO);
-		final User user = userService.transform(userDTO);
-		System.out.println(user);
+		final User user = userService.findOne(rentPostDTO.getUser()); //getUser returns an id
 		
 		if(userService.isPunished(user))
 			throw new PunishedUserException();

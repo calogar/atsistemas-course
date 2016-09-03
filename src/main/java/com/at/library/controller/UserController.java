@@ -49,6 +49,6 @@ public class UserController {
 	@RequestMapping(value = "/{id}", method = { RequestMethod.GET })
 	public UserDTO findOne(@PathVariable("id") Integer id) throws UserNotFoundException {
 		log.debug(String.format("Getting this user: %s", id));
-		return userService.findOne(id);
+		return userService.transform(userService.findOne(id));
 	}
 }

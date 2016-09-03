@@ -50,11 +50,11 @@ public class UserServiceImplementation implements UserService {
 	}
 	
 	@Override
-	public UserDTO findOne(Integer id) throws UserNotFoundException {
+	public User findOne(Integer id) throws UserNotFoundException {
 		final User user = userDao.findOne(id);
 		if(user == null)
 			throw new UserNotFoundException();
-		return transform(user);
+		return user;
 	}
 	
 	public User transform(UserDTO userDTO) {
@@ -67,7 +67,6 @@ public class UserServiceImplementation implements UserService {
 
 	@Override
 	public Boolean isPunished(User user) {
-		System.out.println(user);
 		return user.getUserStatus().equals(UserStatus.BANNED);
 	}
 	
