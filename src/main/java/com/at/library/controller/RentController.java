@@ -20,6 +20,7 @@ import com.at.library.exceptions.BookNotAvailableException;
 import com.at.library.exceptions.BookNotFoundException;
 import com.at.library.exceptions.EmployeeNotFoundException;
 import com.at.library.exceptions.IdNotMatchingException;
+import com.at.library.exceptions.PunishedUserException;
 import com.at.library.exceptions.RentNotFoundException;
 import com.at.library.exceptions.UserNotFoundException;
 import com.at.library.service.RentService;
@@ -45,7 +46,8 @@ public class RentController {
 	  															BookNotFoundException,
 	  															BookNotAvailableException,
 	  															UserNotFoundException,
-	  															EmployeeNotFoundException { 
+	  															EmployeeNotFoundException,
+	  															PunishedUserException { 
 		log.debug(String.format("Renting this book: %s", idBook));
 		return rentService.create(idBook, rentPostDTO);
 	}

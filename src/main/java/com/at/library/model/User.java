@@ -110,4 +110,10 @@ public class User implements Serializable {
 	public void setForgiveDate(Date forgiveDate) {
 		this.forgiveDate = forgiveDate;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", dni=" + dni + ", userStatus=" + userStatus + ", punishDate="
+				+ punishDate + ", forgiveDate=" + forgiveDate + ", rents=" + rents + ", employee=" + employee + "]";
+	}
 }

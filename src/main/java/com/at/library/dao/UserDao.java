@@ -12,11 +12,12 @@ import com.at.library.model.User;
 @Repository
 public interface UserDao extends CrudRepository<User, Integer> {
 	
-	@Query(value = "select u from User as u where userStatus <> 'SUSPENDED'" + 
+	@Query(value = "select u from User as u where u.userStatus <> 'DELETED'" + 
 				   "and (u.name  like %?1% or ?1 is null) " +
 				   "and (u.dni   like %?2% or ?2 is null) ")
 	public List<User> search(String name, String dni, Pageable pageable);
 	
-	@Query(value = "select u from User as u where u.id = ?1 and userStatus <> 'SUSPENDED'")
+	@Query(value = "select u from User as u where u.id = ?1 and u.userStatus <> 'DELETED'")
 	public User findOne(Integer id);
+
 }
