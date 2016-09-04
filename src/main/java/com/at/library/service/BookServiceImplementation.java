@@ -132,7 +132,9 @@ public class BookServiceImplementation implements BookService {
 			
 			final Integer year = Integer.parseInt(bookData.getPublishedDate().substring(0, 4)); 
 			book.setYear(year);
-			book.setDescription(bookData.getDescription());
+			// Trimming strings with lenght > 255 (constraint error)
+			String description = bookData.getDescription();
+			book.setDescription(description.substring(0, Math.min(description.length(), 255)));
 			book.setImage(bookData.getImageLinks().get("thumbnail"));
 		}
 	}
