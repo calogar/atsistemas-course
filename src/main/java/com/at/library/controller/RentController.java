@@ -40,7 +40,7 @@ public class RentController {
 		return rentService.getAll(new PageRequest(page, size));
 	}
 	
-	@RequestMapping(value = "book/{id}/rent", method = { RequestMethod.POST })
+	@RequestMapping(value = { "book/{id}/rent", "rent/{id}" }, method = { RequestMethod.POST })
 	public RentDTO create(@PathVariable("id") Integer idBook, @RequestBody RentPostDTO rentPostDTO)
 																throws IdNotMatchingException,
 	  															BookNotFoundException,
@@ -52,7 +52,7 @@ public class RentController {
 		return rentService.create(idBook, rentPostDTO);
 	}
 	
-	@RequestMapping(value = "book/{id}/rent", method = { RequestMethod.DELETE })
+	@RequestMapping(value = { "book/{id}/rent", "rent/{id}" }, method = { RequestMethod.DELETE })
 	public void delete(@PathVariable("id") Integer idBook) throws BookNotFoundException, RentNotFoundException {
 		log.debug(String.format("Returning this book: %s", idBook));
 		rentService.delete(idBook);
