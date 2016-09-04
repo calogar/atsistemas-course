@@ -15,7 +15,7 @@ public interface BookDao extends CrudRepository<Book, Integer> {
 	/*
 	// Lo normal aquí es coger el modelo y devolver una lista de Libros, no de LibrosDTO. Pero si queremos evitar coger más datos de los que
 	// necesitamos (si la tabla tuviera 400 columns), podemos hacer una excepción y buscar un LibroDTO.
-	@Query(value = "select new com.at.library.dto.BookDTO(b.id, b.isbn, b.title, b.author) from Book as b where b.id in (select r.id from Rent as r where r.endAt is not null)")
+	@Query(value = "select new com.at.library.dto.BookDTO(b.id, b.isbn, b.title, b.author) from Book as b where b.id in (select r.id from Rent as r where r.returnDate is not null)")
 	public List<BookDTO> findUnavailable();
 	*/
 	
