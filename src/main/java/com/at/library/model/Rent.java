@@ -31,15 +31,17 @@ public class Rent implements Serializable {
 	private Employee employee;
 
 	@Temporal(TemporalType.DATE)
-	private Date createdAt;
+	private Date initDate;
 
-	// The day the rent ends
+	// The day the User should return the Book
 	@Temporal(TemporalType.DATE)
-	private Date endAt;
+	private Date returnDate;
 
 	// The day the User returns the Book
 	@Temporal(TemporalType.DATE)
-	private Date returnAt;
+	private Date endDate;
+	
+	private Boolean alreadyPunished = false;
 		
 	public User getUser() {
 		return user;
@@ -57,20 +59,20 @@ public class Rent implements Serializable {
 		this.employee = employee;
 	}
 
-	public Date getEndAt() {
-		return endAt;
+	public Date getReturnDate() {
+		return returnDate;
 	}
 
-	public void setEndAt(Date endAt) {
-		this.endAt = endAt;
+	public void setReturnDate(Date returnDate) {
+		this.returnDate = returnDate;
 	}
 
-	public Date getReturnAt() {
-		return returnAt;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setReturnAt(Date returnAt) {
-		this.returnAt = returnAt;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public Integer getId() {
@@ -89,11 +91,19 @@ public class Rent implements Serializable {
 		this.book = book;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
+	public Date getInitDate() {
+		return initDate;
 	}
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+	public void setInitDate(Date initDate) {
+		this.initDate = initDate;
+	}
+
+	public Boolean getAlreadyPunished() {
+		return alreadyPunished;
+	}
+
+	public void setAlreadyPunished(Boolean alreadyPunished) {
+		this.alreadyPunished = alreadyPunished;
 	}
 }

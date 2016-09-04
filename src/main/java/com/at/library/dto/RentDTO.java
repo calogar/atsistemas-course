@@ -9,11 +9,11 @@ public class RentDTO extends DTO implements Serializable {
 
 	private Integer id;
 	
-	private Date createdAt;
+	private Date initDate;
 	
-	private Date endAt;
+	private Date returnDate;
 
-	private Date returnAt;
+	private Date endDate;
 	
 	private BookDTO book;
 
@@ -25,12 +25,12 @@ public class RentDTO extends DTO implements Serializable {
 		super();
 	}
 	
-	public RentDTO(Integer id, Date createdAt, Date endAt, Date returnAt, BookDTO book, UserDTO user, EmployeeDTO employee) {
+	public RentDTO(Integer id, Date initDate, Date returnDate, Date endDate, BookDTO book, UserDTO user, EmployeeDTO employee) {
 		super();
 		this.id = id;
-		this.createdAt = createdAt;
-		this.endAt = endAt;
-		this.returnAt = returnAt;
+		this.initDate = initDate;
+		this.returnDate = returnDate;
+		this.endDate = endDate;
 		this.book = book;
 		this.user = user;
 		this.employee = employee;
@@ -44,28 +44,28 @@ public class RentDTO extends DTO implements Serializable {
 		this.id = id;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
+	public Date getInitDate() {
+		return initDate;
 	}
 
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
+	public void setInitDate(Date initDate) {
+		this.initDate = initDate;
 	}
 
-	public Date getEndAt() {
-		return endAt;
+	public Date getReturnDate() {
+		return returnDate;
 	}
 
-	public void setEndAt(Date endAt) {
-		this.endAt = endAt;
+	public void setReturnDate(Date returnDate) {
+		this.returnDate = returnDate;
 	}
 
-	public Date getReturnAt() {
-		return returnAt;
+	public Date getEndDate() {
+		return endDate;
 	}
 
-	public void setReturnAt(Date returnAt) {
-		this.returnAt = returnAt;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 	public BookDTO getBook() {
@@ -94,7 +94,7 @@ public class RentDTO extends DTO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "RentDTO [id=" + id + ", createdAt=" + createdAt + ", endAt=" + endAt + ", returnAt=" + returnAt
+		return "RentDTO [id=" + id + ", initDate=" + initDate + ", returnDate=" + returnDate + ", endDate=" + endDate
 				+ ", book=" + book + ", user=" + user + ", employee=" + employee + "]";
 	}
 	

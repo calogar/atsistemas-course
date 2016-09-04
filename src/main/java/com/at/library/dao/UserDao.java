@@ -20,4 +20,6 @@ public interface UserDao extends CrudRepository<User, Integer> {
 	@Query(value = "select u from User as u where u.id = ?1 and u.userStatus <> 'DELETED'")
 	public User findOne(Integer id);
 
+	@Query(value = "select u from User as u where u.userStatus = 'BANNED'")
+	public List<User> findPunished();
 }
