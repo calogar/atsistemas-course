@@ -31,6 +31,13 @@ public class Book extends DTO implements Serializable {
 	
 	private String author;
 
+	// GoogleApis fields
+	private String description;
+	
+	private String image;
+	
+	private Integer year;
+
 	@Enumerated(EnumType.STRING)
 	private BookStatus status;
 
@@ -118,9 +125,34 @@ public class Book extends DTO implements Serializable {
 		this.startDate = startDate;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", isbn=" + isbn + ", title=" + title + ", author=" + author + ", status=" + status
-				+ ", startDate=" + startDate + ", rent=" + rent + ", employee=" + employee + ", shelf=" + shelf + "]";
+		return "Book [id=" + id + ", isbn=" + isbn + ", title=" + title + ", author=" + author + ", description="
+				+ description + ", image=" + image + ", year=" + year + ", status=" + status + ", startDate="
+				+ startDate + ", rent=" + rent + ", employee=" + employee + ", shelf=" + shelf + "]";
 	}
 }
