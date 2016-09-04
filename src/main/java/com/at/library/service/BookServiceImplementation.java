@@ -8,9 +8,12 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.at.library.dao.BookDao;
 import com.at.library.dto.BookDTO;
+import com.at.library.dto.GABookDTO;
+import com.at.library.dto.GAVolumeInfoDTO;
 import com.at.library.enums.BookStatus;
 import com.at.library.exceptions.BookNotFoundException;
 import com.at.library.exceptions.IdNotMatchingException;
@@ -25,6 +28,11 @@ public class BookServiceImplementation implements BookService {
 	@Autowired
 	private DozerBeanMapper dozer;
 
+	@Autowired
+	private RestTemplate restTemplate;
+
+	private static final String GoogleApisBookURL = "https://www.googleapis.com/books/v1/volumes";
+	
 	@Override	
 	public List<BookDTO> search(String title, String isbn, String author, Pageable pageable) {
 		final List<Book> books = bookDao.search(title, isbn, author, pageable);
@@ -48,6 +56,8 @@ public class BookServiceImplementation implements BookService {
 		Book book = transform(bookDTO);
 		book.setStartDate(new Date());
 		book.setStatus(BookStatus.OK);
+		// Setting attributes from GoogleApis
+		setGoogleApisAttributes(book);
 		return transform(bookDao.save(book));
 	}
 	
@@ -95,6 +105,36 @@ public class BookServiceImplementation implements BookService {
 	public void changeStatus(Book book, BookStatus bookStatus) {
 		book.setStatus(bookStatus);
 		bookDao.save(book);
+	}
+
+	/**
+	 * Inserts the query String in the URL and returns it
+	 * @param query
+	 * @return GoogleApis Url
+	 */
+	private String getGoogleApisQuery(String query) {
+		return GoogleApisBookURL + "?startIndex=0&maxResults=1" +
+								   "&fields=items(volumeInfo/description,volumeInfo/publishedDate,volumeInfo/imageLinks/thumbnail)" +
+								   "&q=" + query;
+	}
+	
+	/**
+	 * Queries GoogleApis to retrieve information and save it in our Book model
+	 * @param book
+	 */
+	private void setGoogleApisAttributes(Book book) {
+		
+		final String query = getGoogleApisQuery(book.getTitle());
+		final GABookDTO apiData = restTemplate.getForObject(query, GABookDTO.class);
+
+		if (apiData != null) {
+			final GAVolumeInfoDTO bookData = apiData.getItems()[0].getVolumeInfo();
+			
+			final Integer year = Integer.parseInt(bookData.getPublishedDate().substring(0, 4)); 
+			book.setYear(year);
+			book.setDescription(bookData.getDescription());
+			book.setImage(bookData.getImageLinks().get("thumbnail"));
+		}
 	}
 
 }
