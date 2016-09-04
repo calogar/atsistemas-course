@@ -70,4 +70,14 @@ public interface UserService {
 	 */
 	public Boolean isPunished(User user);
 
+	/**
+	 * Batch process that punishes Users that didn't return the Book on time
+	 */
+	public void punish();
+	
+	/**
+	 * Batch process that forgives Users after a punishment interval
+	 */
+	public void forgive();
+	
 }
