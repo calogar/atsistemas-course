@@ -152,4 +152,10 @@ public class RentServiceImplementation implements RentService {
         calendar.add(Calendar.DATE, 3); // Return books after three days by default
         return calendar.getTime();
 	}
+
+	@Override
+	public List<Rent> findPunishable() {
+		return rentDao.findPunishable();
+	}
+	
 }
