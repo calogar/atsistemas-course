@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 
-import com.at.library.dto.HistoryRentedDTO;
+import com.at.library.dto.HistoryRentDTO;
 import com.at.library.dto.RentDTO;
 import com.at.library.dto.RentPostDTO;
 import com.at.library.exceptions.BookNotAvailableException;
@@ -50,7 +50,7 @@ public interface RentService {
 	 * @param A Pageable object
 	 * @return A list of Rents
 	 */
-	public List<HistoryRentedDTO> getBookHistory(Integer idBook, Pageable pageable);
+	public List<HistoryRentDTO> getBookHistory(Integer idBook, Pageable pageable);
 	
 	/**
 	 * Returns all the Rents for a given User
@@ -58,7 +58,7 @@ public interface RentService {
 	 * @param A Pageable object
 	 * @return A list of Rents
 	 */
-	public List<HistoryRentedDTO> getUserHistory(Integer idUser, Pageable pageable);
+	public List<HistoryRentDTO> getUserHistory(Integer idUser, Pageable pageable);
 	
 	/**
 	 * Transforms a Rent into a RentDTO
@@ -81,7 +81,7 @@ public interface RentService {
 	 * @param rent
 	 * @return RentHistoryDTO
 	 */
-	public HistoryRentedDTO transformHistoryDTO(Rent rent);
+	public HistoryRentDTO transformHistoryDTO(Rent rent);
 	
 	/**
 	 * Calculates the date when the user must return the book

@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import com.at.library.dao.RentDao;
 import com.at.library.dto.BookDTO;
 import com.at.library.dto.EmployeeDTO;
-import com.at.library.dto.HistoryRentedDTO;
+import com.at.library.dto.HistoryRentDTO;
 import com.at.library.dto.RentDTO;
 import com.at.library.dto.RentPostDTO;
 import com.at.library.dto.UserDTO;
@@ -107,9 +107,9 @@ public class RentServiceImplementation implements RentService {
 	}
 
 	@Override
-	public List<HistoryRentedDTO> getBookHistory(Integer idBook, Pageable pageable) {
+	public List<HistoryRentDTO> getBookHistory(Integer idBook, Pageable pageable) {
 		List<Rent> rents = rentDao.findBookHistory(idBook, pageable);
-		List<HistoryRentedDTO> rentHistoryDTOs = new ArrayList();
+		List<HistoryRentDTO> rentHistoryDTOs = new ArrayList();
 		for(Rent rent : rents) {
 			rentHistoryDTOs.add(transformHistoryDTO(rent));
 		}
@@ -117,9 +117,9 @@ public class RentServiceImplementation implements RentService {
 	}
 
 	@Override
-	public List<HistoryRentedDTO> getUserHistory(Integer idUser, Pageable pageable) {
+	public List<HistoryRentDTO> getUserHistory(Integer idUser, Pageable pageable) {
 		List<Rent> rents = rentDao.findUserHistory(idUser, pageable);
-		List<HistoryRentedDTO> rentHistoryDTOs = new ArrayList();
+		List<HistoryRentDTO> rentHistoryDTOs = new ArrayList();
 		for(Rent rent : rents) {
 			rentHistoryDTOs.add(transformHistoryDTO(rent));
 		}
@@ -137,8 +137,8 @@ public class RentServiceImplementation implements RentService {
 	}
 
 	@Override
-	public HistoryRentedDTO transformHistoryDTO(Rent rent) {
-		return new HistoryRentedDTO(rent.getInitDate(),
+	public HistoryRentDTO transformHistoryDTO(Rent rent) {
+		return new HistoryRentDTO(rent.getInitDate(),
 								  rent.getReturnDate(),
 								  rent.getBook().getTitle(),
 								  rent.getBook().getIsbn(),
