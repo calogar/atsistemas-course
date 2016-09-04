@@ -99,8 +99,18 @@ public interface RentService {
 
 	/**
 	 * Sets a punished Rent as already punished, so the user won't be punished again
+	 * 
 	 * @param rent
 	 */
 	public void setAlreadyPunished(Rent rent);
 
+	/**
+	 * Finds a Rent by id
+	 *
+	 * @param Id of the Rent
+	 * @return RentDTO
+	 */
+	public RentDTO findOne(Integer id) throws RentNotFoundException;
+	
+	
 }

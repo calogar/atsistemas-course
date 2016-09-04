@@ -163,5 +163,13 @@ public class RentServiceImplementation implements RentService {
 		rent.setAlreadyPunished(true);
 		rentDao.save(rent);
 	}
+
+	@Override
+	public RentDTO findOne(Integer id) throws RentNotFoundException {
+		Rent rent = rentDao.findOne(id);
+		if(rent == null)
+			throw new RentNotFoundException();
+		return transform(rent);
+	}
 	
 }

@@ -26,4 +26,7 @@ public interface RentDao extends CrudRepository<Rent, Integer> {
 
 	@Query(value = "select r from Rent as r where r.endDate is null and r.returnDate < CURRENT_DATE and r.alreadyPunished = false")
 	public List<Rent> findPunishable();
+	
+	@Query(value = "select r from Rent as r where r.id = ?1")
+	public Rent findOne(Integer id);
 }
