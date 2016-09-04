@@ -83,8 +83,8 @@ public class RentServiceImplementation implements RentService {
 		bookService.changeStatus(book, BookStatus.RENTED);
 		
 		Rent rent = new Rent();
-		rent.setCreatedAt(new Date());
-		rent.setEndAt(calculateEndDate(new Date()));
+		rent.setInitDate(new Date());
+		rent.setReturnDate(calculateReturnDate(new Date()));
 		rent.setEmployee(employee);
 		rent.setBook(book);
 		rent.setUser(user);
@@ -101,7 +101,7 @@ public class RentServiceImplementation implements RentService {
 		if(rent == null)
 			throw new RentNotFoundException();
 		
-		rent.setReturnAt(new Date());
+		rent.setEndDate(new Date());
 		bookService.changeStatus(book, BookStatus.OK);
 		return transform(rentDao.save(rent));
 	}
@@ -138,15 +138,15 @@ public class RentServiceImplementation implements RentService {
 
 	@Override
 	public HistoryRentedDTO transformHistoryDTO(Rent rent) {
-		return new HistoryRentedDTO(rent.getCreatedAt(),
-								  rent.getEndAt(),
+		return new HistoryRentedDTO(rent.getInitDate(),
+								  rent.getReturnDate(),
 								  rent.getBook().getTitle(),
 								  rent.getBook().getIsbn(),
 								  rent.getBook().getId());
 	}
 
 	@Override
-	public Date calculateEndDate(Date startDate) {
+	public Date calculateReturnDate(Date startDate) {
 		Calendar calendar = Calendar.getInstance();
         calendar.setTime(startDate);
         calendar.add(Calendar.DATE, 3); // Return books after three days by default
@@ -156,6 +156,12 @@ public class RentServiceImplementation implements RentService {
 	@Override
 	public List<Rent> findPunishable() {
 		return rentDao.findPunishable();
+	}
+
+	@Override
+	public void setAlreadyPunished(Rent rent) {
+		rent.setAlreadyPunished(true);
+		rentDao.save(rent);
 	}
 	
 }

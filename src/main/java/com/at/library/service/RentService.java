@@ -88,7 +88,7 @@ public interface RentService {
 	 * @param startDate
 	 * @return endDate
 	 */
-	public Date calculateEndDate(Date startDate);
+	public Date calculateReturnDate(Date startDate);
 
 	/**
 	 * Finds all the Rents that have expired and must be punished
@@ -96,4 +96,11 @@ public interface RentService {
 	 * @return List of Rents
 	 */
 	public List<Rent> findPunishable();
+
+	/**
+	 * Sets a punished Rent as already punished, so the user won't be punished again
+	 * @param rent
+	 */
+	public void setAlreadyPunished(Rent rent);
+
 }
