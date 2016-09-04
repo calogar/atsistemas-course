@@ -23,6 +23,7 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	@RequestMapping(method = { RequestMethod.POST })
