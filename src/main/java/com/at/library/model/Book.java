@@ -44,39 +44,6 @@ public class Book extends DTO implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 
-	//@OneToOne(fetch=FetchType.LAZY)
-	private Rent rent;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Employee employee;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	private Shelf shelf;
-	
-	public Rent getRent() {
-		return rent;
-	}
-
-	public void setRent(Rent rent) {
-		this.rent = rent;
-	}
-
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	public Shelf getShelf() {
-		return shelf;
-	}
-
-	public void setShelf(Shelf shelf) {
-		this.shelf = shelf;
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -153,6 +120,6 @@ public class Book extends DTO implements Serializable {
 	public String toString() {
 		return "Book [id=" + id + ", isbn=" + isbn + ", title=" + title + ", author=" + author + ", description="
 				+ description + ", image=" + image + ", year=" + year + ", status=" + status + ", startDate="
-				+ startDate + ", rent=" + rent + ", employee=" + employee + ", shelf=" + shelf + "]";
+				+ startDate + "]";
 	}
 }
