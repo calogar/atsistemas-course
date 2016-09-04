@@ -3,7 +3,7 @@ package com.at.library.dto;
 import java.io.Serializable;
 import java.util.Date;
 
-public class HistoryRentedDTO extends DTO implements Serializable {
+public class HistoryRentDTO extends DTO implements Serializable {
 
 	private static final long serialVersionUID = 7103253036653136415L;
 	
@@ -15,15 +15,15 @@ public class HistoryRentedDTO extends DTO implements Serializable {
 	
 	private String isbn;
 	
-	private Integer book;
+	private Integer idBook;
 	
-	public HistoryRentedDTO(Date init, Date end, String title, String isbn, Integer book) {
+	public HistoryRentDTO(Date init, Date end, String title, String isbn, Integer idBook) {
 		super();
 		this.init = init;
 		this.end = end;
 		this.title = title;
 		this.isbn = isbn;
-		this.book = book;
+		this.idBook = idBook;
 	}
 
 	public String getIsbn() {
@@ -58,17 +58,17 @@ public class HistoryRentedDTO extends DTO implements Serializable {
 		this.title = title;
 	}
 
-	public Integer getBook() {
-		return book;
+	public Integer getIdBook() {
+		return idBook;
 	}
 
-	public void setBook(Integer book) {
-		this.book = book;
+	public void setIdBook(Integer idBook) {
+		this.idBook = idBook;
 	}
 
 	@Override
 	public String toString() {
-		return "RentHistoryDTO [init=" + init + ", end=" + end + ", title=" + title + ", isbn=" + isbn + ", book="
-				+ book + "]";
+		return "HistoryRentedDTO [init=" + init + ", end=" + end + ", title=" + title + ", isbn=" + isbn + ", idBook="
+				+ idBook + "]";
 	}
 }
