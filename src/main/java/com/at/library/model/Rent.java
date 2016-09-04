@@ -33,9 +33,11 @@ public class Rent implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date createdAt;
 
+	// The day the rent ends
 	@Temporal(TemporalType.DATE)
 	private Date endAt;
-	
+
+	// The day the User returns the Book
 	@Temporal(TemporalType.DATE)
 	private Date returnAt;
 		
