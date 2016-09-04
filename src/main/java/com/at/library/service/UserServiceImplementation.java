@@ -25,7 +25,7 @@ import com.at.library.model.User;
 public class UserServiceImplementation implements UserService {
 
 	private static final Logger log = LoggerFactory.getLogger(UserServiceImplementation.class);
-
+	
 	@Autowired
 	private UserDao userDao;
 	
@@ -34,7 +34,7 @@ public class UserServiceImplementation implements UserService {
 
 	@Autowired
 	private DozerBeanMapper dozer;
-	
+
 	@Override
 	public UserDTO create(UserDTO userDTO) {
 		User user = transform(userDTO);
@@ -82,9 +82,11 @@ public class UserServiceImplementation implements UserService {
 		return user.getUserStatus().equals(UserStatus.BANNED);
 	}
 	
-	@Override
+	/**
+	 * Batch process that punishes Users that didn't return the Book on time
+	 */
 	@Scheduled(cron = "0 0 2 1/1 * ?")
-	public void punish() {
+	private void punish() {
 		log.debug("Batch process starting. Penalizing users.");
 		List<Rent> rents = rentService.findPunishable();
 		for(Rent rent : rents) {
@@ -108,9 +110,11 @@ public class UserServiceImplementation implements UserService {
 		}
 	}
 
-	@Override
+	/**
+	 * Batch process that forgives Users after a punishment interval
+	 */
 	@Scheduled(cron = "0 0 3 1/1 * ?")
-	public void forgive() {
+	private void forgive() {
 		log.debug("Batch process starting. Forgiving users.");
 		List<User> users = userDao.findPunished();
 		for(User user : users) {
@@ -123,4 +127,5 @@ public class UserServiceImplementation implements UserService {
 			}
 		}
 	}
+		
 }
