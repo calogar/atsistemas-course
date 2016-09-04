@@ -67,8 +67,8 @@ public class RentController {
 		return rentService.getBookHistory(idBook, new PageRequest(page, size));
 	}
 
-	@RequestMapping(value = "user/id/rent", method = { RequestMethod.GET })
-	public List<HistoryRentDTO> getUserHistory(@PathVariable Integer idUser,
+	@RequestMapping(value = "user/{id}/rent", method = { RequestMethod.GET })
+	public List<HistoryRentDTO> getUserHistory(@PathVariable("id") Integer idUser,
 										@RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
 										@RequestParam(value = "size", required = false, defaultValue = "10") Integer size) {
 		log.debug(String.format("History of the user: %s", idUser));
